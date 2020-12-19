@@ -15,11 +15,13 @@ public class ConsoleWindow : MonoBehaviour
         // Enter text events
         inField.onEndEdit.AddListener(ConsoleWritedMessenge);
         //SubmitButton.onClick.AddListener(()=>{ConsoleWritedMessenge(inField.text);});
+        Write("Console startded...");
     }
 
     // Write any data to consol UI
     private void Write(object text){
-        outField.text += text.ToString() + "\n";
+        var hex = ConsoleColorConfiguration.HEXColor(interpreter.colorConfig.standartColor);
+        outField.text += $"<color={hex}>"+text.ToString() + "</color>\n";
     }
 
     private void ConsoleWritedMessenge(string messenge){

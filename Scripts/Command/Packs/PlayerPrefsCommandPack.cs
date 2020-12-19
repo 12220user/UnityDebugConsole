@@ -8,7 +8,10 @@ using UnityDebugConsole.CommandTool;
 [CommandPackage("PlayerPrefs command package")]
 public static class PlayerPrefsCommandPack 
 {
-    [Command("pprf-g" , "console method to get PlayerPresfs value" , "flag(-i (int) , -f (float), -s(string)) | key")]
+    private const string commandName = "file";
+
+
+    [Command(commandName+"-g" , "console method to get PlayerPresfs value" , "flag(-i (int) , -f (float), -s(string)) | key")]
     public static string GetValue(string flag , string key){
         var result = "";
         switch(flag){
@@ -24,7 +27,7 @@ public static class PlayerPrefsCommandPack
         }
         return result;
     }
-    [Command("pprf-s" , "console method to set PlayerPresfs value" , "flag(-i (int) , -f (float), -s(string)) | key | value")]
+    [Command(commandName+"-s" , "console method to set PlayerPresfs value" , "flag(-i (int) , -f (float), -s(string)) | key | value")]
     public static string SetValue(string flag , string key , string value){
         switch(flag){
             case "-i":
@@ -40,24 +43,24 @@ public static class PlayerPrefsCommandPack
         return "save completed";
     }
 
-    [Command("pprf-d" , "delete all saves to PlayerPrefs")]
+    [Command(commandName+"-d" , "delete all saves to PlayerPrefs")]
     public static string DeleteAll(){
         PlayerPrefs.DeleteAll();
         return "All delite";
     }
 
-    [Command("pprf-dk" , "delete one saves to PlayerPrefs" , "key")]
+    [Command(commandName+"-dk" , "delete one saves to PlayerPrefs" , "key")]
     public static string DeleteKey(string key){
         PlayerPrefs.DeleteKey(key);
         return "delite " + key;
     }
     
-    [Command("pprf-hash" , "return true if key is not empty" , "key")]
+    [Command(commandName+"-hash" , "return true if key is not empty" , "key")]
     public static string Hash(string key){
         return PlayerPrefs.HasKey(key).ToString();
     }
     
-    [Command("pprf-save" , "save all changes" )]
+    [Command(commandName+"-save" , "save all changes" )]
     public static string Save(){
         PlayerPrefs.Save();
         return "all saved";
